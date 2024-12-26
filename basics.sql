@@ -226,6 +226,21 @@ SELECT * FROM teacher AS A JOIN teacher AS B ON A.dep_id=B.id;
 
 -- SQL SUB QUERRIES
 
+-- USE IN WHERE
+SELECT name, marks FROM student WHERE marks>(SELECT AVG(marks) AS average from student);
+SELECT name FROM student WHERE id IN (SELECT id FROM student WHERE id%2=0);
+
+-- USE IN FROM
+SELECT MAX(marks) FROM (SELECT * FROM student WHERE city="KARACHI") AS temp;
+
+-- USE IN SELECT
+SELECT (SELECT MAX(marks) FROM student), name FROM student;
 
 
+-- MYSQL VIEWS (Virtual table of real table)
+-- USEFULL TO CREATE DIFFERENT VIEW FROM SAME TABLE ON BASIS OF DIFFERENT ROLLS AND PERMISSIONS
+
+CREATE VIEW testView AS SELECT name, marks, id, grade FROM student;
+
+SELECT * FROM testView;
 
